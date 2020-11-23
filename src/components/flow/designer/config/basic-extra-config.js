@@ -16,7 +16,7 @@ export var nodeExtraConfig = {
 		},
 		{
 			id:"2",
-			name:'分管领导'
+			name:'村干部'
 		}
 	],
 	gatewayType:[

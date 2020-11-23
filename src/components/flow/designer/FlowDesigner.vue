@@ -240,6 +240,11 @@ export default {
     } else {
 	  that.flowOptions.ccPersons = []
     }
+    if (config.ccAreaPersons !== 'undefined' && config.ccAreaPersons != null) {
+	  that.flowOptions.ccAreaPersons = config.ccAreaPersons
+    } else {
+	  that.flowOptions.ccAreaPersons = []
+    }
     if (config.ccpersonTypes !== 'undefined' && config.ccpersonTypes != null) {
 	  that.flowOptions.ccpersonTypes = config.ccpersonTypes
     }
@@ -307,7 +312,8 @@ export default {
 		  assessPersons: null,
 		  areaTree: null,
 		  ccpersonTypes: null,
-		  ccPersons: null
+		  ccPersons: null,
+		  ccAreaPersons: null
 	  }
     }
   },

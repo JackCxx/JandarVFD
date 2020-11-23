@@ -135,12 +135,12 @@
 							</a-select>
 
 						</a-form-item>
-						<a-form-item label="行政级别" :label-col="formItemLayout.labelCol" v-if="currentSelect.ccpersonType == '分管领导'":wrapper-col="formItemLayout.wrapperCol">
-							<a-tree-select
+						<a-form-item label="村干部" :label-col="formItemLayout.labelCol" v-if="currentSelect.ccpersonType == '村干部'":wrapper-col="formItemLayout.wrapperCol">
+							<!-- <a-tree-select
 							    style="width: 100%"
 							    :dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
 							    :treeData="flowOptions.areaTree"
-							    placeholder="请选择行政级别"
+							    placeholder="请选择村干部"
 							    treeDefaultExpandAll
 							    v-model="queryParam.ccArea"
 								showSearch
@@ -150,7 +150,17 @@
 							    <span style="color: #08c" slot="title" slot-scope="{key, value}">
 							      {{value}}
 							    </span>
-						  </a-tree-select>
+						  </a-tree-select> -->
+						  <a-select
+						  v-model="queryParam.ccAreaPerson"
+						  showSearch
+						  :filterOption="filterOption"
+						  placeholder="请选择村干部"
+						  @change="ccAreaPersonChange"
+						  mode="multiple"
+						  >
+						  	<a-select-option v-for="p in flowOptions.ccAreaPersons" :key="p.id" :value="p.id">{{p.name}}</a-select-option>
+						  </a-select>
 						</a-form-item>
 					</a-form>
 				</template>
@@ -291,7 +301,7 @@ export default {
 		  assessArea: null,
 		  ccpersonType: null,
 		  ccPerson: [],
-		  ccArea: null
+		  ccAreaPerson: [],
 	  },
       activeKey: 'flow-attr'
     }
@@ -311,13 +321,12 @@ export default {
     },
     ccPersonChnage (value) {
 	  this.currentSelect.ccPerson = value
-	  console.log(value)
     },
     assessAreaChnage (value) {
       this.currentSelect.assessArea = value
     },
-    ccAreaChnage (value) {
-	  this.currentSelect.ccArea = value
+    ccAreaPersonChange (value) {
+	  this.currentSelect.ccAreaPerson = value
     },
     gatewayTypeChnage (value) {
       this.currentSelect.gatewayType = value
@@ -382,6 +391,11 @@ export default {
 	    this.queryParam.ccPerson = this.currentSelect.ccPerson
 	  } else {
 	    this.queryParam.ccPerson = []
+	  }
+	  if (this.currentSelect.ccAreaPerson !== 'undefined' && this.currentSelect.ccAreaPerson != null) { // 抄送人员
+	    this.queryParam.ccAreaPerson = this.currentSelect.ccAreaPerson
+	  } else {
+	    this.queryParam.ccAreaPerson = []
 	  }
       if (this.currentSelect.gatewayType !== 'undefined' && this.currentSelect.gatewayType != null) {
         this.queryParam.gatewayType = this.currentSelect.gatewayType
