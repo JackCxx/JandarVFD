@@ -68,7 +68,7 @@
 							</a-select>
 						</a-form-item>
 						<a-form-item label="审核人员" :label-col="formItemLayout.labelCol" v-if="currentSelect.personType == '指定人员'":wrapper-col="formItemLayout.wrapperCol">
-							<a-select
+							<a-select    
 							v-model="queryParam.assessPerson"
 							showSearch
           					:filterOption="filterOption"
@@ -87,8 +87,8 @@
 							    treeDefaultExpandAll
 							    v-model="queryParam.assessArea"
 								showSearch
-								treeNodeFilterProp="title"
-							    @change="assessAreaChnage"
+								treeNodeFilterProp="title" 
+							    @change="assessAreaChnage" 
 							  >
 							    <span style="color: #08c" slot="title" slot-scope="{key, value}">
 							      {{value}}
@@ -96,7 +96,7 @@
 						  </a-tree-select>
 						</a-form-item>
 						<a-form-item label="会签类型" :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol">
-							<a-select  placeholder="请选择会签类型"  @change="countersignTypeChnage"
+							<a-select  placeholder="请选择会签类型"  @change="countersignTypeChnage" 
 							v-model="queryParam.countersignType"
 							showSearch
           					:filterOption="filterOption"
@@ -196,7 +196,6 @@
 						<a-form-item label="名称" :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol">
 							<a-input placeholder="请输入节点名称" :value="currentSelect.nodeName" @change="nodeNameChange" />
 						</a-form-item>
-
 					</a-form>
 				</template>
 				<template v-else-if="currentSelect.type == 'x-lane' || currentSelect.type == 'y-lane'">
@@ -210,7 +209,6 @@
 						<a-form-item label="名称" :label-col="formItemLayout.labelCol" :wrapper-col="formItemLayout.wrapperCol">
 							<a-input placeholder="请输入节点名称" :value="currentSelect.nodeName" @change="nodeNameChange" />
 						</a-form-item>
-
 					</a-form>
 				</template>
 			</a-tab-pane>
@@ -239,6 +237,7 @@
 </template>
 
 <script>
+
 import jsplumb from 'jsplumb'
 import { flowConfig } from '../config/args-config.js'
 import { nodeExtraConfig } from '../config/basic-extra-config.js'
